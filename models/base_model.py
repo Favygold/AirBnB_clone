@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines the BaseModel class"""
 
+import models
 import uuid
 from datetime import datetime
 
@@ -28,8 +29,7 @@ class BaseModel:
                     else:
                         self.__dict__[key] = value
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """Prints/Returns string representation of a BaseModel instance"""
@@ -39,15 +39,17 @@ class BaseModel:
         """Updates the public instance attribute ``updated_at``
         with the current datetime"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Returns a dictionary of BaseModel instance.
 
-        This includes key/value pair ``__class__`` representing
-        the name of the class"""
+           This includes key/value pair ``__class__`` representing
+           the name of the class
+        """
         dic = self.__dict__.copy()
         # Convert to string object in ISO format
-        dic['created_at'] = self.created_at.isoformat()
-        dic['updated_at'] = self.updated_at.isoformat()
-        dic['__class__'] = self.__class__.__name__  # added object's class name
+        dic["created_at"] = self.created_at.isoformat()
+        dic["updated_at"] = self.updated_at.isoformat()
+        dic["__class__"] = self.__class__.__name__  # added object's class name
         return dic
