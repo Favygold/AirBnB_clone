@@ -20,7 +20,6 @@ class Place(BaseModel):
         longitude (float)
         amenity_ids (list of string): empty list.
     """
-
     city_id = ""
     user_id = ""
     name = ""
