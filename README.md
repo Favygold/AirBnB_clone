@@ -277,5 +277,5 @@ $ python3 unittest -m tests/test_console.py
 ```
 
 ## Authors :black_nib:
-* **Favour Golden Idikibiebuma** [Favour Golden Idikibiebuma](https://github.com/Favygold)
-* **Bright Okon** [Bright Okon](https://github.com/BrightTech10)
+* **Favour Golden Idikibiebuma** [Favygold](https://github.com/Favygold)
+* **Bright Okon** [BrightTech10](https://github.com/BrightTech10)
