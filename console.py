@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Returns a list containing the parsed arguments from the string
         """
-        arg_list = arg.split(id)
+        arg_list = [s.strip('"') for s in arg.split(id)]
         list_items = []
 
         for item in arg_list:
