@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg_lst[0] in HBNBCommand.__classes:
             new = HBNBCommand.__classes[arg]()
             new.save()
-            print (new.id)
+            print(new.id)
         else:
             print("** class doesn't exist **")
 
