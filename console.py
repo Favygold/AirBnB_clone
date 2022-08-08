@@ -20,13 +20,13 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     __classes = {
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Amenity",
-        "Place",
-        "Review"
+        'BaseModel': BaseModel,
+        'User': User,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Place': Place,
+        'Review': Review
     }
 
     @staticmethod
@@ -84,8 +84,9 @@ class HBNBCommand(cmd.Cmd):
         if len(arg_lst) == 0:
             print("** class name missing **")
         elif arg_lst[0] in HBNBCommand.__classes:
-            models.storage.save()
-            print(eval(arg)().id)
+            new = HBNBCommand.__classes[arg]()
+            new.save()
+            print (new.id)
         else:
             print("** class doesn't exist **")
 
