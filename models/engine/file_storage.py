@@ -24,7 +24,7 @@ class FileStorage:
 
     def all(self):
         """Return the dictionary __objects"""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """"Set in __objects the obj with key <obj class name>.id
@@ -33,16 +33,16 @@ class FileStorage:
             obj: object to be set
         """
         ocls_name = obj.__class__.__name__
-        FileStorage.__objects["{}.{}".format(ocls_name, obj.id)] = obj
+        self.__objects["{}.{}".format(ocls_name, obj.id)] = obj
 
     def save(self):
         """Serialize __objects to the JSON file"""
-        objs = FileStorage.__objects
+        objs = self.__objects
         obj_dict = {
             key: value.to_dict()
             for key, value in objs.items()
             }
-        with open(FileStorage.__file_path, mode='w', encoding='utf-8') as file:
+        with open(self.__file_path, mode='w', encoding='utf-8') as file:
             json.dump(obj_dict, file)
 
     def reload(self):
@@ -51,7 +51,7 @@ class FileStorage:
            If the file doesn’t exist, no exception is raised
         """
         try:
-            with open(FileStorage.__file_path, encoding='utf-8') as file:
+            with open(self.__file_path, encoding='utf-8') as file:
                 obj_dict = json.load(file)
                 for obj in obj_dict.values():
                     cls_name = obj["__class__"]
